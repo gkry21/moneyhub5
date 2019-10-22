@@ -6,10 +6,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.JstlView;	
 
 @EnableWebMvc
-@ComponentScan(basePackages= {"com.moneyhub5.web.controller"})
+@ComponentScan(basePackages= {"com.moneyhub5.web.cmm"})
 public class ServletConfig implements WebMvcConfigurer{
 	@Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
