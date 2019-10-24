@@ -17,9 +17,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @Configuration
 @MapperScan(basePackages= {"com.moneyhub5.web"})
 @ComponentScan(basePackages= {"com.moneyhub5.web"})
-@Import({
-	MyBatisConfig.class, ServletConfig.class
-})
+
 
 public class RootConfig {
 	@Bean
@@ -34,7 +32,7 @@ public class RootConfig {
 //	
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+	    dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 	    dataSource.setUrl("jdbc:mysql://localhost:3306/moneyhub?serverTimezone=UTC");
 	    dataSource.setUsername("moneyhub");
 	    dataSource.setPassword("moneyhub");

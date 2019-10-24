@@ -1,6 +1,6 @@
 package com.moneyhub5.web.lambda;
 
-import com.moneyhub5.web.user.User;
+import com.moneyhub5.web.usr.User;
 
 public class GenericTest {
 	static class Box<T>{

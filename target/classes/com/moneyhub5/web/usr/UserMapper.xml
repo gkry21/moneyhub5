@@ -11,11 +11,16 @@
 		from client
 		where aid like #{aid} and pwd like #{pwd}
     </select>
+    <select id="existId" resultType="int">
+       select count(*)
+		from client
+		where aid like #{aid}
+    </select>
+    
     <insert id="insertClient" parameterType="User">
         insert into client (aid,cname,pwd) values (
             #{aid}, #{cname}, #{pwd}
         )
     </insert>
-	<select id="" resultType="">
-	</select>
+
 </mapper>

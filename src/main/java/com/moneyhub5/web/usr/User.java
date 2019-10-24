@@ -1,4 +1,4 @@
-package com.moneyhub5.web.user;
+package com.moneyhub5.web.usr;
 
 import org.springframework.stereotype.Component;
 

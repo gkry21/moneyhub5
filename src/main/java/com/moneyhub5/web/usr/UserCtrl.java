@@ -1,4 +1,4 @@
-package com.moneyhub5.web.user;
+package com.moneyhub5.web.usr;
 
 
 import java.util.Map;
@@ -18,13 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.moneyhub5.web.cmm.IConsumer;
 import com.moneyhub5.web.cmm.IFunction;
-import com.moneyhub5.web.cmm.IPredicate;
 import com.moneyhub5.web.utl.Printer;
 
 
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 
 public class UserCtrl {
 	private static final Logger logger = LoggerFactory.getLogger(UserCtrl.class);
@@ -35,24 +34,28 @@ public class UserCtrl {
 	
 	@GetMapping("/{aid}/exist")
 	public Map<?,?> exist(@PathVariable String aid){
+		System.out.println(aid);
 		IFunction<String, Integer> p = o -> userMapper.existId(aid);
 		map.clear();
-		map.put("msg", (p.apply(aid)==0) ?"SUCCESS" : "FAIL");
+		map.put("msg", (p.apply(aid)==0) ? "SUCCESS" : "FAIL");
+		System.out.println(map.get("msg"));
 		return map;
 	}
 	
 	@PostMapping("/")
 	public Map<?,?> join(@RequestBody User param) {
-		logger.info("AJAX가 보낸 아이디와 비번{}",param.getAid()+","+param.getPwd());
+		printer.accept("join 들어옴 : "+param.toString());
 		IConsumer<User> c = o -> userMapper.insertClient(param);
 		c.accept(param);
 		map.clear();
 		map.put("msg", "SUCCESS");
 		return map;	
 }
-	@PostMapping("/{aid}")
+	@PostMapping("/{aid}/login")
 	public User login(@PathVariable String aid, @RequestBody User param) {
+		System.out.println(param.toString());
 		IFunction<User,User> f = t-> userMapper.selectUserById(param);
+		System.out.println(f.apply(param).toString());
 		return f.apply(param);
 	}
 	@GetMapping("/{aid}")

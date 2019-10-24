@@ -5,6 +5,6 @@
        <setting  name="mapUnderscoreToCamelCase"  value="true"/>
     </settings>
     <typeAliases>
-       <typeAlias alias="User"  type="com.moneyhub5.web.user.User"/>
+       <typeAlias alias="User"  type="com.moneyhub5.web.usr.User"/>
     </typeAliases>
 </configuration>
