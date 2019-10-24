@@ -34,14 +34,17 @@ auth =(()=>{
            let data = {aid : $('#userid').val(), pwd : $('#password').val(), cname: $('#cname').val()}
            alert('전송아이디: '+data.aid)
            $.ajax({
-               url : _+'/user/join',
+               url : _+'/users/',
                type : 'POST',
                dataType : 'json',
                data : JSON.stringify(data),
                contentType : 'application/json',
                success : d => {
                    alert('AJAX 성공 아이디'+d.aid+', 성공 비번: '+d.pwd);
+                   if(d.msg ==="SUCCESS")
                    login()
+                   else
+                	   alert('회원가입 실패')
                },
                 	error : e => {
                     alert('AJAX 실패');
@@ -63,7 +66,7 @@ auth =(()=>{
                 let data = {aid : $('#aid').val(), pwd : $('#pwd').val()}
                 alert('전송아이디: '+data.aid)
                 $.ajax({
-                     url : _+'/user/login',
+                     url : _+'/users/',
                      type : 'POST',
                      dataType : 'json',
                      data : JSON.stringify(data),

@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-	private String uid,pwd;
+	private String aid,pwd,cname;
 
 }

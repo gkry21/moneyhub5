@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+<mapper namespace="com.moneyhub5.web.usr.UserMapper">
+
+    <select id="selectUserById" resultType="User">
+       select aid,cname,pwd
+		from client
+		where aid like #{aid} and pwd like #{pwd}
+    </select>
+    <insert id="insertClient" parameterType="User">
+        insert into client (aid,cname,pwd) values (
+            #{aid}, #{cname}, #{pwd}
+        )
+    </insert>
+	<select id="" resultType="">
+	</select>
+</mapper>

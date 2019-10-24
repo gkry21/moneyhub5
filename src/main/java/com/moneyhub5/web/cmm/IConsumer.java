@@ -1,6 +1,6 @@
 package com.moneyhub5.web.cmm;
 
 @FunctionalInterface
-public interface IConsumer {
-	public abstract void accept(Object o);
+public interface IConsumer<T> {
+	public void accept(T t);
 }
