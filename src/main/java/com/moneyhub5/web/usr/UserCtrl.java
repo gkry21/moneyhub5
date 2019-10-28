@@ -1,6 +1,5 @@
 package com.moneyhub5.web.usr;
 
-
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -20,11 +19,8 @@ import com.moneyhub5.web.cmm.IConsumer;
 import com.moneyhub5.web.cmm.IFunction;
 import com.moneyhub5.web.utl.Printer;
 
-
-
 @RestController
 @RequestMapping("/user")
-
 public class UserCtrl {
 	private static final Logger logger = LoggerFactory.getLogger(UserCtrl.class);
 	@Autowired Map<String, Object>map;
