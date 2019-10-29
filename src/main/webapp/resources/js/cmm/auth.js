@@ -126,7 +126,7 @@ auth =(()=>{
                 		success : d => {
                 			$.when(
                 			$.getScript(router_js,()=>{$.extend(new User(d))})
-                			).done(()=>{brd.onCreate()}		
+                			).done(()=>{brd.onCreate()}
                 			).fail(()=>{alert('WHEN DONE 실패')
                 			})
                        },

@@ -1,5 +1,6 @@
 package com.moneyhub5.web.brd;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -29,6 +30,7 @@ public class ArticleCtrl {
 	@Autowired User art;
 	@Autowired Printer printer;
 	@Autowired ArticleMapper articleMapper;
+	@Autowired List<Article> list;
 	
 	@PostMapping("/")
 	public Map<?,?> write(@RequestBody Article param){
@@ -49,8 +51,12 @@ public class ArticleCtrl {
 	public Article read(@PathVariable String artseq, @RequestBody Article param) {
 		return null;
 	}
-	@PutMapping("/{artseq}")
+	@PutMapping("/update")
 	public Article update(@PathVariable String artseq, @RequestBody Article param) {
+//		IFunction<String, Object> f =  t -> articleMapper.updateArticle(param);
+//		printer.accept("업데이트" +f.apply(artseq));
+//		map.clear();
+//		map.put("artseq",f.apply(artseq));
 		return null;
 	}
 	@DeleteMapping("/{artseq}")
@@ -60,7 +66,16 @@ public class ArticleCtrl {
 	@GetMapping("/count")
 	public Map<?,?> countArticle(){
 		ISupplier<String> s=()-> articleMapper.countArticle();
+		printer.accept("카운팅 :" +s.get());
+		map.clear();
 		map.put("count", s.get());
 		return map;
+	}
+	@GetMapping("/")
+	public List<Article> list(){
+		list.clear();
+		ISupplier<List<Article>> s = ()-> articleMapper.selectAll();
+		printer.accept("전체 글 목록 \n" +s.get());
+		return s.get();
 	}
 }

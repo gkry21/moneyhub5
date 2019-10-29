@@ -12,4 +12,10 @@
 	<select id="countArticle" resultType="String">
 	SELECT COUNT(*) FROM ARTICLE
 	</select>
+	<select id="selectAll" resultType="Article">
+	SELECT A.BOARD_TYPE AS boardType, A.* FROM ARTICLE A <!-- as는 생략가능하다 -->
+	</select>
+	<update id="updateArticle" parameterType="Article">
+	UPDATE ARTICLE SET CONTENT = #{content} WHERE ARTSEQ = #{artSeq}
+	</update>
 </mapper>
