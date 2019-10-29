@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moneyhub5.web.cmm.IConsumer;
+import com.moneyhub5.web.cmm.IFunction;
+import com.moneyhub5.web.cmm.ISupplier;
 import com.moneyhub5.web.usr.User;
 import com.moneyhub5.web.utl.Printer;
 
@@ -37,6 +39,9 @@ public class ArticleCtrl {
 		c.accept(param);
 		map.clear();
 		map.put("msg", "SUCCESS");
+		ISupplier<String> s=()-> articleMapper.countArticle();
+		printer.accept("카운팅 :" +s.get());
+		map.put("count", s.get());
 		printer.accept("글쓰기 나감"+map.get("msg"));
 		return map;
 	}
@@ -51,5 +56,11 @@ public class ArticleCtrl {
 	@DeleteMapping("/{artseq}")
 	public Map<?,?> delete(@PathVariable String artseq, @RequestBody Article param){
 		return null;
+	}
+	@GetMapping("/count")
+	public Map<?,?> countArticle(){
+		ISupplier<String> s=()-> articleMapper.countArticle();
+		map.put("count", s.get());
+		return map;
 	}
 }

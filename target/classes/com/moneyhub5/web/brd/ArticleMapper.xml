@@ -9,4 +9,7 @@
             #{aid}, #{boardType},#{title}, #{content}
 	)
 	</insert>
+	<select id="countArticle" resultType="String">
+	SELECT COUNT(*) FROM ARTICLE
+	</select>
 </mapper>
