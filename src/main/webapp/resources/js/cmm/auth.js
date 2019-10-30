@@ -2,20 +2,23 @@
 var auth = auth || {};
 auth =(()=>{
 	const WHEN_ERR = '호출하는 JS 파일을 찾지 못했습니다.'
-   let _, js, vue,css,img,brd_js,router_js;
-   let init =x=> {
-       _ = x.ctx
-       js = x.js
-       css = x.css
-       img = x.img
+   let _, js, vue,css,img,brd_js,router_js, cookie_js;
+   let init =()=> {
+	   _ = $.ctx()
+	   js = $.js()
+	   css = $.css()
+	   img = $.img()
        vue = js + '/vue/auth_vue.js'
        brd_js = js+'/brd/brd.js'
        router_js = js +'/cmm/router.js'
+       cookie_js = js+'/cmm/cookie.js'
    }
    let onCreate =()=> {
        init();
        $.when($.getScript(vue),
-    		   $.getScript(router_js))
+    		   $.getScript(router_js),
+    		   $.getScript(brd_js),
+    		   $.getScript(cookie_js))
        .done(()=>{
     	   setContentView()
     	  $('#a_go_join').click(e=>{
@@ -108,10 +111,10 @@ auth =(()=>{
 //    	   })
 //       }
       let login =()=>{
-          let x =  {css: $.css(), img: $.img(), js :$.js()}
-          $('head').html(auth_vue.login_head(x))
-          $('body').addClass('text-center')
-          .html(auth_vue.login_body(x))
+//          let x =  {css: $.css(), img: $.img(), js :$.js()}
+//          $('head').html(auth_vue.login_head(x))
+//          $('body').addClass('text-center')
+//          .html(auth_vue.login_body(x))
           $('<button>',{
    			text:"Sign in",
    			type:"submit",
@@ -126,20 +129,17 @@ auth =(()=>{
                 		data : JSON.stringify(data),
                 		contentType : 'application/json',
                 		success : d => {
-                			$.when(
-                			$.getScript(router_js,()=>{$.extend(new User(d))})
-                			).done(()=>{
-                				brd.onCreate({_:_, css:css, img:img, js:js})
-                				}
-                			).fail(()=>{alert('WHEN DONE 실패')
-                			})
-                       },
-                       error : e => {
-                           alert('AJAX 실패');
+                			setCookie("AID",d.aid)
+                			alert('저장된 쿠키:', getCookie("AID"))
+                				brd.onCreate()
+                			},
+                			 error : e => {
+                                 alert('AJAX 실패');
+                			 }
+                       })
+                      
                        }
-                	})
-			}
-		}).addClass("btn btn-lg btn-primary btn-block")
+                	}).addClass("btn btn-lg btn-primary btn-block")
 		.appendTo('#btn_login')
       }
 //      let mypage =d=>{
