@@ -52,12 +52,9 @@ public class ArticleCtrl {
 		return null;
 	}
 	@PutMapping("/update")
-	public Article update(@PathVariable String artseq, @RequestBody Article param) {
-//		IFunction<String, Object> f =  t -> articleMapper.updateArticle(param);
-//		printer.accept("업데이트" +f.apply(artseq));
-//		map.clear();
-//		map.put("artseq",f.apply(artseq));
-		return null;
+	public void update(@RequestBody Article param) {
+		IConsumer<Article> c = t-> articleMapper.updateArticle(param);
+		c.accept(param);
 	}
 	@DeleteMapping("/{artseq}")
 	public Map<?,?> delete(@PathVariable String artseq, @RequestBody Article param){

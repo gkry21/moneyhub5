@@ -2,10 +2,12 @@
 var auth = auth || {};
 auth =(()=>{
 	const WHEN_ERR = '호출하는 JS 파일을 찾지 못했습니다.'
-   let _, js, vue,brd_js,router_js;
-   let init =()=> {
-       _ = $.ctx();
-       js = $.js();
+   let _, js, vue,css,img,brd_js,router_js;
+   let init =x=> {
+       _ = x.ctx
+       js = x.js
+       css = x.css
+       img = x.img
        vue = js + '/vue/auth_vue.js'
        brd_js = js+'/brd/brd.js'
        router_js = js +'/cmm/router.js'
@@ -126,7 +128,9 @@ auth =(()=>{
                 		success : d => {
                 			$.when(
                 			$.getScript(router_js,()=>{$.extend(new User(d))})
-                			).done(()=>{brd.onCreate()}
+                			).done(()=>{
+                				brd.onCreate({_:_, css:css, img:img, js:js})
+                				}
                 			).fail(()=>{alert('WHEN DONE 실패')
                 			})
                        },
