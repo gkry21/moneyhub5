@@ -34,6 +34,7 @@ navi =(()=>{
 		.click(e=>{
 			e.preventDefault()
 			brd.write()
+			
 		})
 		$('<a>',{
 			href : '#',
@@ -44,7 +45,7 @@ navi =(()=>{
 		.click(e=>{
 			e.preventDefault()
 			deleteCookie()
-			app.run(_)
+			app.run(_) 
 		})
 	}
 	return {onCreate}

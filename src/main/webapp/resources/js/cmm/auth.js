@@ -1,8 +1,8 @@
 "use strict";
 var auth = auth || {};
 auth =(()=>{
-	const WHEN_ERR = '호출하는 JS 파일을 찾지 못했습니다.'
-   let _, js, vue,css,img,brd_js,router_js, cookie_js;
+	const WHEN_ERR = 'auth호출하는 JS 파일을 찾지 못했습니다.'
+   let _, js, vue,css,img,brd_js, cookie_js,adm_js;
    let init =()=> {
 	   _ = $.ctx()
 	   js = $.js()
@@ -10,15 +10,16 @@ auth =(()=>{
 	   img = $.img()
        vue = js + '/vue/auth_vue.js'
        brd_js = js+'/brd/brd.js'
-       router_js = js +'/cmm/router.js'
        cookie_js = js+'/cmm/cookie.js'
+       adm_js = js+'/adm/adm.js'
    }
    let onCreate =()=> {
        init();
        $.when($.getScript(vue),
-    		   $.getScript(router_js),
     		   $.getScript(brd_js),
-    		   $.getScript(cookie_js))
+    		   $.getScript(cookie_js),
+    		   $.getScript(adm_js)
+    		   )
        .done(()=>{
     	   setContentView()
     	  $('#a_go_join').click(e=>{
@@ -61,14 +62,19 @@ auth =(()=>{
     	  })
        }).fail(()=>{alert(WHEN_ERR)})
        }
+   
+   
        let setContentView =()=>{
     	   $('head').html(auth_vue.login_head({css: $.css(), img: $.img(),  js: $.js()}))
            $('body').addClass('text-center')
            .html(auth_vue.login_body({css: $.css(), img: $.img(),  js: $.js()}))
    		login()
+   		access()
        }
+       
+       
        let join =()=>{
-//    	   init()
+	//    	   init()
     	   let data = {aid : $('#aid').val(), pwd : $('#pwd').val(), cname : $('#cname').val()}
            $.ajax({
                url : _+'/user/',
@@ -130,7 +136,7 @@ auth =(()=>{
                 		contentType : 'application/json',
                 		success : d => {
                 			setCookie("AID",d.aid)
-                			alert('저장된 쿠키:', getCookie("AID"))
+                			alert('저장된 쿠키:'+getCookie("AID"))
                 				brd.onCreate()
                 			},
                 			 error : e => {
@@ -147,5 +153,32 @@ auth =(()=>{
 //    	  $('head').html(auth_vue.mypage_head(x))
 //          $('body').html(auth_vue.mypage_body(x))
 //      }
+      let access =()=>{
+    	  $('#a_go_admin').click(e=>{
+    		  e.preventDefault()
+    		  let ok = confirm('사원이냐?')
+    			if(ok){
+    				 let empno = prompt('사원번호 입력')
+        		 $.ajax({
+        			 url:sessionStorage.getItem('ctx')+'/admins/'+empno,
+        			 type:'POST',
+        			 data: JSON.stringify({empno: empno , pwd :prompt('비밀번호를 입력하시오')}),
+        			 dataType:'json',
+        			 contentType:'application/json',
+        			 success:d=>{
+        				 if(d.msg ==='SUCCESS'){
+        					 adm.onCreate()
+        				 }
+        				 else{
+        					 alert('접근권한이 없습니다')
+        					 app.run()
+        				 }
+        			 },
+        			 error:e=>{('하.....')}
+        		 })
+    			}  
+    	  })
+
+      }
    return{onCreate, join, login}
 })();

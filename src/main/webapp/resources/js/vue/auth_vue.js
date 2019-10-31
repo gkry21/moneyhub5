@@ -291,18 +291,21 @@ auth_vue = {
             return '<body class="text-center">'+
             '  <form id="form_join" class="form-signin">'+
             '    <img class="mb-4" src="'+x.img+'/bootstrap-solid.svg" alt="" width="72" height="72">'+
-            '    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>'+
+            '    <h1 class="h3 mb-3 font-weight-normal">로그인한방성공기원</h1>'+
             '    <label for="aid" class="sr-only">Email address</label>'+
-            '    <input type="text" id="aid" class="form-control" placeholder="Email address" required="" autofocus="">'+
+            '    <input type="text" id="aid" class="form-control" placeholder="@이메일인척하는 아이디 입력" required="" autofocus="">'+
             '    <label for="inputPassword" class="sr-only">Password</label>'+
-            '    <input type="password" id="pwd" class="form-control" placeholder="Password" required="">'+
+            '    <input type="password" id="pwd" class="form-control" placeholder="패스워드알아맞춰보시지" required="">'+
             '    <div class="checkbox mb-3">'+
             '      <label>'+
-            '       <a id="a_go_join" href="#">GO JOIN</a>'+
+            '       <a id="a_go_join" href="#">회원가입</a>'+
+            '      </label>'+
+            '      <label>'+
+            '       <a id="a_go_admin" href="#">관리자 모드</a>'+
             '      </label>'+
             '    </div>'+
             '    <div id="btn_login"></div>'+
-            '    <p class="mt-5 mb-3 text-muted">© 2017-2019</p>'+
+            '    <p class="mt-5 mb-3 text-muted">© 은디가 만들었뀨</p>'+
             '  </form>'+
             '</body>'
       }

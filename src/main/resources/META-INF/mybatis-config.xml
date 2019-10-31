@@ -7,5 +7,6 @@
     <typeAliases>
        <typeAlias alias="User"  type="com.moneyhub5.web.usr.User"/>
        <typeAlias alias="Article"  type="com.moneyhub5.web.brd.Article"/>
+       <typeAlias alias="Admin"  type="com.moneyhub5.web.adm.Admin"/>
     </typeAliases>
 </configuration>

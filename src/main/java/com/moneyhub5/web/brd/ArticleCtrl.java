@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moneyhub5.web.cmm.IConsumer;
-import com.moneyhub5.web.cmm.IFunction;
 import com.moneyhub5.web.cmm.ISupplier;
 import com.moneyhub5.web.usr.User;
 import com.moneyhub5.web.utl.Printer;
@@ -32,7 +31,7 @@ public class ArticleCtrl {
 	@Autowired ArticleMapper articleMapper;
 	@Autowired List<Article> list;
 	
-	@PostMapping("/")
+	@PostMapping("/write")
 	public Map<?,?> write(@RequestBody Article param){
 		printer.accept("글쓰기 들어옴");
 		param.setBoardType("게시판");
