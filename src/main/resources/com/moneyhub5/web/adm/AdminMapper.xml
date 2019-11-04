@@ -9,4 +9,12 @@
 	<select id="access" resultType="Admin">
 	SELECT EMPNO FROM ADMIN WHERE EMPNO LIKE #{empno}
 	</select>
+	<select id="selectAdmin2" resultType="Admin" parameterType ="hashmap">
+       SELECT AID,CNAME,PWD
+		FROM CLIENT
+		WHERE AID LIKE #{AID} 
+		<trim prefix="WHERE" prefixOverrides="=AND |OR">
+		AND ${} LIKE #{}
+		</trim>
+    </select>
 </mapper>

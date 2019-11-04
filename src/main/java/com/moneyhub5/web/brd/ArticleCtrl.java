@@ -1,5 +1,6 @@
 package com.moneyhub5.web.brd;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -46,10 +47,18 @@ public class ArticleCtrl {
 		printer.accept("글쓰기 나감"+map.get("msg"));
 		return map;
 	}
-	@GetMapping("/{artseq}")
-	public Article read(@PathVariable String artseq, @RequestBody Article param) {
-		return null;
+	@GetMapping("/page/{pageNo}")
+	public Map<?,?> list(@PathVariable String pageNo){
+		System.out.println("넘어온 페이지 넘버: "+pageNo);
+		list.clear();
+		ISupplier<List<Article>> s =()-> articleMapper.selectAll();
+		printer.accept("해당 페이지 글목록 \n"+s.get());
+		map.clear();
+		map.put("articles",s.get());
+		map.put("pages",Arrays.asList(1,2,3,4,5));
+		return map;
 	}
+	
 	@PutMapping("/update")
 	public void update(@RequestBody Article param) {
 		IConsumer<Article> c = t-> articleMapper.updateArticle(param);

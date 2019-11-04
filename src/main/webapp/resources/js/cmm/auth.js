@@ -12,6 +12,7 @@ auth =(()=>{
        brd_js = js+'/brd/brd.js'
        cookie_js = js+'/cmm/cookie.js'
        adm_js = js+'/adm/adm.js'
+       
    }
    let onCreate =()=> {
        init();

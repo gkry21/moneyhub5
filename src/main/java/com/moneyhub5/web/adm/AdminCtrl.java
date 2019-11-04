@@ -1,6 +1,7 @@
 package com.moneyhub5.web.adm;
 
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.moneyhub5.web.cmm.IConsumer;
 import com.moneyhub5.web.cmm.IFunction;
+import com.moneyhub5.web.usr.User;
 import com.moneyhub5.web.utl.Printer;
 
 @RestController
@@ -23,6 +26,7 @@ public class AdminCtrl {
 	@Autowired Admin adm;
 	@Autowired Printer printer;
 	@Autowired Map<String,Object> map;
+	
 	
 	@PostMapping("/{empno}")
 	public Map<?,?> access(@PathVariable String empno,@RequestBody Admin param) {	
@@ -36,5 +40,5 @@ public class AdminCtrl {
 	public void selectAdminNo(@RequestBody Admin param) {
 		
 	}
-	
+
 }

@@ -13,7 +13,11 @@
 	SELECT COUNT(*) FROM ARTICLE
 	</select>
 	<select id="selectAll" resultType="Article">
-	SELECT A.BOARD_TYPE AS boardType, A.* FROM ARTICLE A <!-- as는 생략가능하다 -->
+	SELECT A.BOARD_TYPE AS boardType, A.* FROM (
+			SELECT * 
+			FROM ARTICLE
+			ORDER BY ARTSEQ DESC) A
+		LIMIT 0, 5
 	</select>
 	<update id="updateArticle" parameterType="Article">
 	UPDATE ARTICLE SET CONTENT = #{content} AND TITLE = #{title} WHERE ARTSEQ = #{artSeq}

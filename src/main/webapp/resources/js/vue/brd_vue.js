@@ -87,7 +87,7 @@ brd_head:x=>{
 
 		'          </p>'+
 
-		'        </div>'+
+		'        </div><div id="pag"></div>'+
 
 		'        <div class="media text-muted pt-3">'+
 
