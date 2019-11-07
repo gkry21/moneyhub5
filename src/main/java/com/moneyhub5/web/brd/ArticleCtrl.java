@@ -53,10 +53,10 @@ public class ArticleCtrl {
         pxy.setPageSize(pxy.parseInt(pageSize));
         pxy.paging();
         list.clear();
-        ISupplier<List<Article>> s =()-> articleMapper.selectAll(pxy);
+        ISupplier<List<Article>> s =()-> articleMapper.selectAll(pxy); 
         printer.accept("해당 페이지 글 목록 \n"+s.get());
-        map.accept(Arrays.asList("articles", "pages","pxy"),
-        		Arrays.asList(s.get(),Arrays.asList(1,2,3,4,5), pxy));
+        map.accept(Arrays.asList("articles","pxy"),
+        		Arrays.asList(s.get(), pxy));
         return map.get();
     }
 	
