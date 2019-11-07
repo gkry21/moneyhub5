@@ -17,7 +17,7 @@
 			SELECT * 
 			FROM ARTICLE
 			ORDER BY ARTSEQ DESC) A
-		LIMIT 0, 5
+		LIMIT ${startRow}, ${pageSize}
 	</select>
 	<update id="updateArticle" parameterType="Article">
 	UPDATE ARTICLE SET CONTENT = #{content} AND TITLE = #{title} WHERE ARTSEQ = #{artSeq}

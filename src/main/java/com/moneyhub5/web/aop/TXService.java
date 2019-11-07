@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moneyhub5.web.pxy.Proxy;
+
 @Transactional
 @Service
 public class TXService { // 서비스라고 이름붙어있지만 포조이다.
